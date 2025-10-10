@@ -1,0 +1,1 @@
+Bookings page coming soon
