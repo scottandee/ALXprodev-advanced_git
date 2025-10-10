@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# An  hook script to verify that each directory has
+# a README.md file before committing.
+#
+
+# Find all directories
+dirs=$(find . -type d ! -path '*/.git/*' ! -path './.git')
+
+# Loop through each directory
+echo Checking through dirs...
+for dir in $dirs; do
+    path_to_readme="$dir/README.md"
+    
+    if [ ! -f $path_to_readme ]; then
+        # Exit with a status 1 if readme does not exist
+        echo README.md does not exist in $dir
+        exit 1
+    fi
+done
+
+echo All good.

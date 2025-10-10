@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# A hook script that logs the merge after completing
+# a merge into the main branch
+#
+
+# Fetch current branch name
+cur_branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$cur_branch" = "main" ]; then
+    # Find source branch
+    src_branch=$(git reflog -1 | grep "moving" | \
+    sed -E 's/.*from ([^ ]+).*/\1/' | head -n 1)
+
+    # Output merge
+    echo "merged $src_branch into $cur_branch"  
+fi
