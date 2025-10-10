@@ -1,0 +1,1 @@
+Payments page coming soon
